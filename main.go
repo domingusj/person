@@ -7,13 +7,14 @@ import (
 	"strconv"
 )
 
+// Person struct is contains info about a person
+type Person struct {
+	FirstName string
+	Age       int
+}
+
 // Converts a JSON file containing people and ages to a human-readable txt file
 func main() {
-
-	type Person struct {
-		FirstName string
-		Age       int
-	}
 
 	var people []Person
 
