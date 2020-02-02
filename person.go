@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"strconv"
 )
 
 // Person struct is contains info about a person
@@ -14,9 +13,10 @@ type Person struct {
 }
 
 // ReadPeople converts a JSON file containing people and ages to a human-readable txt file
-func ReadPeople() {
+func ReadPeople() string {
 
 	var people []Person
+	var output string
 
 	data, err := ioutil.ReadFile("./testdata/people.json")
 	if err != nil {
@@ -28,8 +28,8 @@ func ReadPeople() {
 		fmt.Println("error:", err)
 	}
 
-	for i := range people {
-		fmt.Println(people[i].FirstName + " is " + strconv.Itoa(people[i].Age) + " years old.")
+	for _, p := range people {
+		output += fmt.Sprintf("%s is %d years old.\n", p.FirstName, p.Age)
 	}
-
+	return output
 }
